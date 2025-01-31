@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axiosInstance from '../../config/axiosConfig';
+import { toast } from 'react-toastify';
 
 function AddSite() {
   const [siteName, setSiteName] = useState('');
@@ -16,7 +17,7 @@ function AddSite() {
       setSites(response.data);
     } catch (error) {
       console.error('Error fetching sites', error);
-      alert(`Failed to fetch sites: ${error.response?.data?.message || error.message}`);
+      toast.error(`Failed to fetch sites: ${error.response?.data?.message || error.message}`);
     }
   };
 
@@ -30,11 +31,11 @@ function AddSite() {
         setSites([...sites, response.data.site]);
         // Clear input
         setSiteName('');
-        alert('Site added successfully');
+        toast.success('Site added successfully');
       }
     } catch (error) {
       console.error('Error adding site', error);
-      alert(`Failed to add site: ${error.response?.data?.message || error.message}`);
+      toast.error(`Failed to add site: ${error.response?.data?.message || error.message}`);
     }
   };
 
@@ -57,11 +58,11 @@ function AddSite() {
         setSites(updatedSites);
         // Reset editing state
         setEditingSite(null);
-        alert('Site updated successfully');
+        toast.success('Site updated successfully');
       }
     } catch (error) {
       console.error('Error updating site', error);
-      alert(`Failed to update site: ${error.response?.data?.message || error.message}`);
+      toast.error(`Failed to update site: ${error.response?.data?.message || error.message}`);
     }
   };
 
@@ -75,11 +76,11 @@ function AddSite() {
         // Remove the deleted site from the list
         const updatedSites = sites.filter(site => site._id !== siteId);
         setSites(updatedSites);
-        alert('Site deleted successfully');
+        toast.success('Site deleted successfully');
       }
     } catch (error) {
       console.error('Error deleting site', error);
-      alert(`Failed to delete site: ${error.response?.data?.message || error.message}`);
+      toast.error(`Failed to delete site: ${error.response?.data?.message || error.message}`);
     }
   };
 
@@ -122,7 +123,7 @@ function AddSite() {
           {sites.map((site) => (
             <tr key={site._id}>
               <td>{site.name}</td>
-              <td>
+              <td className='gap'> 
                 <button onClick={() => handleEditSite(site)}>Edit</button>
                 <button onClick={() => handleDeleteSite(site._id)}>Delete</button>
               </td>

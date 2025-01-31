@@ -11,7 +11,7 @@ function App() {
   return (
     <Router>
       <ToastContainer />
-      <div className="App">
+      <div className="app bg-color">
         <Routes>
           {/* Default Route */}
           <Route path="/" element={<Navigate to="/admin/login" replace />} />

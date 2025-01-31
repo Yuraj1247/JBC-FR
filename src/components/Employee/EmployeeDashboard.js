@@ -15,6 +15,10 @@ function EmployeeDashboard() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const print = () => {
+    window.print();
+  };
+
   useEffect(() => {
     const fetchEmployeeData = async () => {
       try {
@@ -76,25 +80,26 @@ function EmployeeDashboard() {
   };
 
   return (
-    <div className="employee-dashboard">
+    <div className="employee-dashboard ">
       <div className="title-container">
-      <h2>Hii {profile.name}</h2>
+      <h2>Hii,<strong>{profile.name}</strong></h2>
       <button onClick={handleLogout} className="logout-btn">Logout</button></div>
-      <div className="profile-section">
+      <div className="profile-section main-color">
         <h3>Profile Details</h3>
+        <hr></hr>
         <div className="profile-details">
         <div className="profile-picture-container">
           <img src={profilePicture} alt={`${profile.name}'s profile`} className="profile-picture" onError={(e) => { e.target.src = defaultProfilePicture; }} />
         </div>
         <div className="profile-info">
           <p>Name: {profile.name}</p>
-          <p>Mobile Number:{profile.mobileNumber}</p>
+          <p>Mobile Number: {profile.mobileNumber}</p>
           <p>Designation: {profile.designation}</p>
           <p>Email: {profile.email}</p>
         </div></div>
       </div>
-      <div className="attendance-table">
-        <h3>Attendance Details</h3>
+      <div className="attendance-table main-color">
+        <h3>Attendance Details</h3><hr></hr>
         <table>
           <thead>
             <tr>
@@ -111,18 +116,19 @@ function EmployeeDashboard() {
                 {/* <td>{index + 1}</td> */}
                 <td>{new Date(record.date).toLocaleDateString()}</td>
                 <td>{record.status || 'NA'}</td>
-                <td>{record.advanceAmount || 0}</td>
+                <td>₹ {record.advanceAmount || 0}</td>
                 <td>{record.siteName || 'NA'}</td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
-      <div className="monthly-summary">
-        <h3><strong>Monthly Summary</strong></h3>
-        <p>Total Present Days: {monthlySummary.totalPresentDays}</p>
-        <p>Total Advance Amount: {monthlySummary.totalAdvanceAmount}</p>
+      <div className="monthly-summary main-color">
+        <h3><strong>Monthly Summary</strong></h3><hr></hr>
+        <p>Total Present Days: <strong>{monthlySummary.totalPresentDays}</strong> </p>
+        <p>Total Advance Amount: <strong>₹ {monthlySummary.totalAdvanceAmount}</strong></p>
         {/* <p>Your Position: {monthlySummary.position || 'Not Ranked'}</p> */}
+        <button onClick={print} className="print-btn">Print</button>
       </div>
     </div>
   );

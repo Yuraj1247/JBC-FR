@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axiosInstance from '../../config/axiosConfig';
+import { toast } from 'react-toastify';
 
 function UpdateAttendance() {
   const [employees, setEmployees] = useState([]);
@@ -43,7 +44,7 @@ function UpdateAttendance() {
     try {
       // Validate required fields
       if (!attendanceRecord.employeeId || !attendanceRecord.date || !attendanceRecord.hazri || !attendanceRecord.siteName) {
-        alert('Please fill in all required fields');
+        toast.error('Please fill in all required fields');
         return;
       }
 
@@ -54,7 +55,7 @@ function UpdateAttendance() {
       });
 
       if (response.data) {
-        alert('Attendance updated successfully');
+        toast.success('Attendance updated successfully');
         // Reset form
         setAttendanceRecord({
           employeeId: '',
@@ -67,7 +68,7 @@ function UpdateAttendance() {
       }
     } catch (error) {
       console.error('Error updating attendance', error);
-      alert(`Failed to update attendance: ${error.response?.data?.message || error.message}`);
+      toast.error(`Failed to update attendance: ${error.response?.data?.message || error.message}`);
     }
   };
 
@@ -114,7 +115,7 @@ function UpdateAttendance() {
           <option value="Present">Present</option>
           <option value="Absent">Absent</option>
           <option value="Half">Half</option>
-          <option value="NA">NA</option>
+          <option value="-">-</option>
         </select>
 
         <select 

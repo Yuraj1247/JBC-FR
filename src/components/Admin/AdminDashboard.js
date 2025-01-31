@@ -83,7 +83,7 @@ function AdminDashboard() {
           <h3>Total Sites</h3>
           <p>{dashboardSummary.totalSites}</p>
         </div>
-        <div className="summary-card">
+        {/* <div className="summary-card">
           <h3>Recent Employees</h3>
           <ul>
             {dashboardSummary.recentEmployees.map((employee) => (
@@ -92,7 +92,7 @@ function AdminDashboard() {
               </li>
             ))}
           </ul>
-        </div>
+        </div> */}
       </div>
 
       <div className="admin-navigation">

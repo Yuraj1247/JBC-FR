@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axiosInstance from '../../config/axiosConfig';
+import { toast } from 'react-toastify';
 
 function AddEmployeeForm({ onEmployeeAdded }) {
   const [newEmployee, setNewEmployee] = useState({
@@ -41,11 +42,11 @@ function AddEmployeeForm({ onEmployeeAdded }) {
           profilePicture: null
         });
 
-        alert('Employee added successfully');
+        toast.success('Employee added successfully');
       }
     } catch (error) {
       console.error('Error adding employee', error);
-      alert(`Failed to add employee: ${error.response?.data?.message || error.message}`);
+      toast.error(`Failed to add employee: ${error.response?.data?.message || error.message}`);
     }
   };
 

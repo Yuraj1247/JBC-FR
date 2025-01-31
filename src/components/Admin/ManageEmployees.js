@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axiosInstance from '../../config/axiosConfig';
 import defaultProfilePicture from '../../assets/default-profile.png';
+import { toast } from 'react-toastify';
 
 function ManageEmployees() {
   const [employees, setEmployees] = useState([]);
@@ -69,7 +70,7 @@ function ManageEmployees() {
       setProfilePictureFile(null);
     } catch (error) {
       console.error('Error updating employee', error);
-      alert(`Failed to update employee: ${error.response?.data?.message || error.message}`);
+      toast.error(`Failed to update employee: ${error.response?.data?.message || error.message}`);
     }
   };
 
@@ -81,12 +82,12 @@ function ManageEmployees() {
       const maxSize = 5 * 1024 * 1024; // 5MB
 
       if (!validTypes.includes(file.type)) {
-        alert('Please upload a valid image (JPEG, PNG, GIF, or WebP)');
+        toast.error('Please upload a valid image (JPEG, PNG, GIF, or WebP)');
         return;
       }
 
       if (file.size > maxSize) {
-        alert('File size should be less than 5MB');
+        toast.error('File size should be less than 5MB');
         return;
       }
 
@@ -111,7 +112,7 @@ function ManageEmployees() {
         setEmployees(employees.filter(emp => emp._id !== employeeId));
       } catch (error) {
         console.error('Error deleting employee', error);
-        alert(`Failed to delete employee: ${error.response?.data?.message || error.message}`);
+        toast.error(`Failed to delete employee: ${error.response?.data?.message || error.message}`);
       }
     }
   };
@@ -199,7 +200,7 @@ function ManageEmployees() {
               required 
             />
 
-            <div className="form-actions">
+            <div className="form-actions gap">
               <button type="submit">Update Employee</button>
               <button 
                 type="button" 
@@ -254,7 +255,7 @@ function ManageEmployees() {
                 <td>{employee.name}</td>
                 <td>{employee.mobileNumber}</td>
                 <td>{employee.designation}</td>
-                <td>
+                <td className='gap'>
                   <button onClick={() => handleEditEmployee(employee)}>
                     Edit
                   </button>

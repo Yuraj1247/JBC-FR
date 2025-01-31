@@ -50,6 +50,7 @@ function EmployeeLogin() {
   };
 
   return (
+  
     <div className="employee-login">
       <h2>Employee Login</h2>
       {error && <div className="error-message" style={{color: 'red'}}>{error}</div>}

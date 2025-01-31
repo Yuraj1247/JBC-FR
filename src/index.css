@@ -6,7 +6,7 @@ body {
   background-color:rgba(0, 0, 0,0.1);
 }
 
-.admin-login, .employee-login {
+.admin-login{
   max-width: 400px;
   margin: 50px auto;
   padding: 20px;
@@ -14,6 +14,17 @@ body {
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
+
+.employee-login {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+
 
 form {
   display: flex;
@@ -42,7 +53,7 @@ button:hover {
 }
 
 .admin-dashboard {
-  max-width: 900px;
+  max-width: 700px;
   margin: 20px auto;
   padding: 20px;
   background-color: white;
@@ -114,6 +125,13 @@ th, td {
   border-radius: 4px;
 }
 
+.dashboard-summary{
+  display: flex;
+   gap:100px;
+  align-items: center;
+  padding-left: 30px;
+}
+
 
 /* // Employee Dashboard */
 
@@ -144,7 +162,8 @@ h2 {
 .logout-btn {
   background: linear-gradient(135deg, #ff4b2b, #ff416c);
   color: white;
-  padding: 10px 15px;
+  padding: 10px 30px;
+  margin: 0px 50px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -329,4 +348,32 @@ h2 {
 
 .toast.error {
   background-color: #f44336; /* Red for error */
+}
+
+.gap{
+  display: flex;
+  gap: 10px;
+}
+
+.bg-color{
+  background: white;
+}
+.main-color{
+  background: rgb(252, 211, 161);
+}
+
+.app
+{
+  font-family: 'Poppins', sans-serif;
+}
+
+.print-btn{
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
 }
